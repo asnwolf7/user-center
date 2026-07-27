@@ -1,0 +1,22 @@
+# Java后端
+target/
+*.class
+*.jar
+*.log
+.idea/
+*.iml
+HELP.md
+mvnw
+mvnw.cmd
+
+# Vue前端
+node_modules/
+dist/
+.env.local
+.env.development
+.env.production
+
+# 通用系统文件
+.DS_Store
+.vscode/
+*.swp
