@@ -1,0 +1,47 @@
+[Unit]
+Description=My Spring Boot Production Application
+Documentation=https://example.com/docs
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=appuser
+Group=appuser
+WorkingDirectory=/opt/user-center-backend
+
+# JVM参数优化
+ExecStart=/usr/bin/java -Xms512m -Xmx1024m -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/user-center-backend/heap-dumps -XX:ErrorFile=/opt/user-center-backend/logs/hs_err_pid%p.log  -Djava.security.egd=file:/dev/./urandom -Dlogging.file.path=/opt/user-center-backend/logs -jar user-center-backend-0.0.1-SNAPSHOT.jar --spring.config.location=classpath:/application-prod.yml
+
+ExecStop=/bin/kill -15 $MAINPID
+TimeoutStopSec=30
+
+# 重启策略
+Restart=on-failure
+RestartSec=10
+StartLimitInterval=300
+StartLimitBurst=10
+
+# 资源限制
+LimitNOFILE=65536
+LimitNPROC=4096
+
+# 环境配置
+Environment=JAVA_HOME=/usr/bin/java
+Environment=SPRING_PROFILES_ACTIVE=prod
+Environment=SPRING_OUTPUT_ANSI_ENABLED=NEVER
+
+# 安全设置
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/opt/user-center-backend/logs /opt/user-center-backend/data
+
+# 日志配置
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=spring-boot-app
+
+[Install]
+WantedBy=multi-user.target
