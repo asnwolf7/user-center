@@ -4,10 +4,7 @@ alert(process.env.NODE_ENV);
 
 const myAxios = axios.create({
   // 区分开发和线上环境
-  baseURL:
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:8080"
-      : "http://117.72.35.154:8080",
+  baseURL: "",
   timeout: 10000,
   withCredentials: true,
 });
