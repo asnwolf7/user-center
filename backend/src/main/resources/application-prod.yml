@@ -2,8 +2,8 @@
 spring:
   # DataSource Config
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: 'jdbc:mysql://localhost:3306/testdb?useSSL=false'
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: asn
     password: Ny2aMB8a78WBXXpG
   # session 失效时间
