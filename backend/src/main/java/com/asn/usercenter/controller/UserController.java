@@ -44,7 +44,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/register")
-    @CrossOrigin(origins = {"http://localhost:8081"}, allowCredentials = "true")
+//    @CrossOrigin(origins = {"http://localhost:8081"}, allowCredentials = "true")
     public BaseResponse<Long> userRegister(@RequestBody UserRegisterRequest userRegisterRequest) {
         // 校验
         if (userRegisterRequest == null) {
@@ -69,7 +69,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/login")
-    @CrossOrigin(origins = {"http://localhost:8081"}, allowCredentials = "true")
+//    @CrossOrigin(origins = {"http://localhost:8081"}, allowCredentials = "true")
     public BaseResponse<User> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
         if (userLoginRequest == null) {
             return ResultUtils.error(ErrorCode.PARAMS_ERROR);
@@ -90,7 +90,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/logout")
-    @CrossOrigin(origins = {"http://localhost:8081"}, allowCredentials = "true")
+//    @CrossOrigin(origins = {"http://localhost:8081"}, allowCredentials = "true")
     public BaseResponse<Integer> userLogout(HttpServletRequest request) {
         if (request == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
@@ -106,7 +106,7 @@ public class UserController {
      * @return
      */
     @GetMapping("/current")
-    @CrossOrigin(origins = {"http://localhost:8081"}, allowCredentials = "true")
+//    @CrossOrigin(origins = {"http://localhost:8081"}, allowCredentials = "true")
     public BaseResponse<User> getCurrentUser(HttpServletRequest request) {
         Object userObj = request.getSession().getAttribute(USER_LOGIN_STATE);
         User currentUser = (User) userObj;
@@ -121,7 +121,7 @@ public class UserController {
     }
 
     @GetMapping("/search")
-    @CrossOrigin(origins = {"http://localhost:8081"}, allowCredentials = "true")
+//    @CrossOrigin(origins = {"http://localhost:8081"}, allowCredentials = "true")
     public BaseResponse<List<User>> searchUsers(String username, HttpServletRequest request) {
         if (!isAdmin(request)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
@@ -136,7 +136,7 @@ public class UserController {
     }
 
     @PostMapping("/delete")
-    @CrossOrigin(origins = {"http://localhost:8081"}, allowCredentials = "true")
+//    @CrossOrigin(origins = {"http://localhost:8081"}, allowCredentials = "true")
     public BaseResponse<Boolean> deleteUser(@RequestBody long id, HttpServletRequest request) {
         if (!isAdmin(request)) {
             throw new BusinessException(ErrorCode.NO_AUTH);
